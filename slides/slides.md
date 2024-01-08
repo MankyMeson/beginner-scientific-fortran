@@ -70,6 +70,9 @@ Arrays are assigned using parentheses `()`. To make an array of three dimensions
 
 ! Set the first element to 1.
     array_3d(1) = 1._dp
+
+! Set multiple elements.
+    array_3d = (/1._dp, 0._dp, 0._dp/)
 ```
 
 ## Flow Control
@@ -100,4 +103,7 @@ Basic for loops, or do loops as they are known in Fortran use the following synt
 
 ## Exercise 1
 
-Write a program which
+Write a program which calculates the dot product of two vectors, and prints it. Use the following two vectors:
+$$
+    \left( 1, 30, 1.2, -12 \right) \cdot \left( 100.05, 0.00034, 6, 67 \right)
+$$
