@@ -2,6 +2,10 @@
 
 ## Introduction
 
+Welcome to Fortran!
+
+If you've not downloaded gfortran or another compiler, please see <https://fortran-lang.org/en/learn/os_setup/install_gfortran/>
+
 ## Fortran Source Files.
 
 The standard modern Fortran file extension is `.f90`. You might sometimes see `.f95` or `.f03` for specific Fortran standards.
@@ -50,7 +54,8 @@ Constants are defined using the keyword `parameter`.
 
 Floating point numbers come in single and double precision forms. It's standard practice to define the **kinds** of these using the following syntax.
 ```Fortran
-    integer, parameter :: dp = kind(1.0d0), sp = kind(1.0e0)
+    integer, parameter :: dp = kind(1.0d0), &
+        & sp = kind(1.0e0)
     real(sp) :: f1
     real(dp) :: f2
 
@@ -94,12 +99,13 @@ Basic for loops, or do loops as they are known in Fortran use the following synt
         ! Your repeating code in here.
     end do
 ```
- While loops:
- ```Fortran
-    do while (some_logical)
-        ! Your repeating code in here.
-    end do
- ```
+
+While loops:
+```Fortran
+   do while (some_logical)
+       ! Your repeating code in here.
+   end do
+```
 
 ## Exercise 1
 
@@ -107,3 +113,55 @@ Write a program which calculates the dot product of two vectors, and prints it. 
 $$
     \left( 1, 30, 1.2, -12 \right) \cdot \left( 100.05, 0.00034, 6, 67 \right)
 $$
+
+## Subprograms
+
+Fortran supports both functions (those which `return` a value) and subroutines (those which don't return a value). We'll start with function syntax as its what many of you may be most familiar with.
+
+---
+
+```Fortran
+program main
+    implicit none
+
+    integer x
+
+    x = 12
+    print *, x
+    x = add_two(x)
+    print *, x
+
+contains
+    integer function add_two(x)
+        integer, intent(in) :: x
+        add_two = x + 2
+    end function add_two
+end program main
+```
+
+---
+
+And now subroutines.
+
+```Fortran
+program main
+    implicit none
+
+    integer x
+
+    x = 12
+    print *, x
+    call add_two(x)
+    print *, x
+
+contains
+    subroutine add_two(x)
+        integer, intent(in out) :: x
+        x = x + 2
+    end subroutine add_two
+end program main
+```
+
+## A Small Project: Coulomb's Law
+
+The second part of this Lecture is about creating a little graph of two charged particles acting under coulomb's law.
