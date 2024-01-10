@@ -15,7 +15,7 @@ If you happen to see `.f` or `.for` file extensions, you're dealing with old FOR
 ## Hello World!
 
 A Fortran file is made up of a list of statements, each taking place on its own line. There's no need for curly braces or indentation, but you'll probably want to use indentation.
-```Fortran
+```fortranfree
 program main
     implicit none
     print *, "Hello, World!"
@@ -37,7 +37,7 @@ $ ./myprogram.out
 ## Variables
 
 Fortran is a statically typed language, variables must be defined with a type and can only be assigned to values of that type. Here are a few examples:
-```Fortran
+```fortranfree
     integer :: i, j, ij, jsq
     logical :: i_less_than_j
 
@@ -53,7 +53,7 @@ Fortran is a statically typed language, variables must be defined with a type an
 Constants are defined using the keyword `parameter`.
 
 Floating point numbers come in single and double precision forms. It's standard practice to define the **kinds** of these using the following syntax.
-```Fortran
+```fortranfree
     integer, parameter :: dp = kind(1.0d0), &
         & sp = kind(1.0e0)
     real(sp) :: f1
@@ -67,7 +67,7 @@ Floating point numbers come in single and double precision forms. It's standard 
 ## Arrays
 
 Arrays are assigned using parentheses `()`. To make an array of three dimensions you would:
-```Fortran
+```fortranfree
     real(dp) :: array_3d(3)
 
 ! Set all elements to zero.
@@ -83,7 +83,7 @@ Arrays are assigned using parentheses `()`. To make an array of three dimensions
 ## Flow Control
 
 If statements use the following syntax.
-```Fortran
+```fortranfree
     if (some_logical) then
         ! Your first branch in here.
     else if (another_logical) then
@@ -94,14 +94,14 @@ If statements use the following syntax.
 ---
 
 Basic for loops, or do loops as they are known in Fortran use the following syntax:
-```Fortran
+```fortranfree
     do x = 1, n
         ! Your repeating code in here.
     end do
 ```
 
 While loops:
-```Fortran
+```fortranfree
    do while (some_logical)
        ! Your repeating code in here.
    end do
@@ -120,7 +120,7 @@ Fortran supports both functions (those which `return` a value) and subroutines (
 
 ---
 
-```Fortran
+```fortranfree
 program main
     implicit none
 
@@ -143,7 +143,7 @@ end program main
 
 And now subroutines.
 
-```Fortran
+```fortranfree
 program main
     implicit none
 
@@ -164,4 +164,39 @@ end program main
 
 ## A Small Project: Coulomb's Law
 
-The second part of this Lecture is about creating a little graph of two charged particles acting under coulomb's law.
+The second part of this workshop is about creating a little graph of two charged particles acting under Coulomb's law.
+
+A quick refresher: the electrostatic force felt by a charged particle due to another charged particle is
+$$
+    \vb{F}_1 = \frac{q_1 q_2}{4\pi\varepsilon_0\vqty{\vb{r}_{12}}^2}\hat{\vb{r}_{12}},
+$$
+where $\vb{r}_{12}$ is a vector in the direction of particle 1 from particle 2.
+
+## Writing to a file
+
+Fortran doesn't have any plotting tools that are as easy to use as matplotlib (in my opinion), for example, so its common practice to write out the data to a file and then to write scripts that analyse the data.  
+This is also good practice if you wish to save on time spent generating data. The syntax for opening a file, writing to it line by line, and closing it is as follows.
+```fortranfree
+open(unit = 1, file = "myfile.data", status = "new")
+write(1,*) "3.14"
+close(1)
+```
+
+## Exercise 2: Coulomb's Law
+
+Back to the project, your code should:
+
+* Create a file named `coulomb_repulsion.data`.
+* Define two electrons, with positions and charges.
+* Calculate the Coulomb force felt by the moving electron at 1,000 points in space as $\vb{r}_{12}$ is varied between $\pqty{0.1, 0.1, 0.1}$ mm and $\pqty{1.1, 1.1, 1.1}$ mm.
+* Write each force on a new line in `coulomb_repulsion.data`
+
+In your simulation please use the following constants:
+$$
+    \pi = 3.14,\,\,\,\varepsilon_0 = 8.85\times10^{-12}
+$$
+
+Here's the coulomb repulsion equation again:
+$$
+    \vb{F}_1 = \frac{q_1 q_2}{4\pi\varepsilon_0\vqty{\vb{r}_{12}}^2}\hat{\vb{r}_{12}},
+$$
