@@ -4,8 +4,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 markdown_to_beamer () {
     pandoc $1 \
-        --include-in-header "$SCRIPT_DIR/header.tex"
         -t beamer \
+        --include-in-header "$SCRIPT_DIR/header.tex" \
         --pdf-engine=xelatex \
         -o $2
 }
