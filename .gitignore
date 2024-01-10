@@ -1,4 +1,4 @@
-.pdf
-.mod
-.out
-.data
+*.pdf
+*.mod
+*.out
+*.data
