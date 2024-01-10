@@ -6,6 +6,7 @@ markdown_to_beamer () {
     pandoc $1 \
         -t beamer \
         --include-in-header "$SCRIPT_DIR/header.tex" \
+        --highlight-style pygments \
         --pdf-engine=xelatex \
         -o $2
 }
