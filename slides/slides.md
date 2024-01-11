@@ -193,7 +193,7 @@ Back to the project, your code should:
 
 In your simulation please use the following constants:
 $$
-    \pi = 3.14,\,\,\,\varepsilon_0 = 8.85\times10^{-12}
+    \pi = 3.14,\,\,\,\varepsilon_0 = 8.85\times10^{-12}\text{F/m},\,\,\,e=1.60\times10^{-19}\text{C}
 $$
 
 Here's the coulomb repulsion equation again:
