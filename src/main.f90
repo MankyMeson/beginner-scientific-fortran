@@ -2,80 +2,98 @@ program main
     implicit none
 
     integer, parameter :: dp = kind(1.0d0)
-    integer :: i, j, ij, jsq
-    logical :: i_less_than_j, some_logical
-    real(dp) :: f1, f2
-    real(dp) :: array_3d(3), matrix_3x3(3, 3)
+
+    integer :: i, j, ij, jsq, x
+    logical :: i_less_than_j
+    real(dp) :: f1, array_3d(3)
+
+    logical :: some_logical
 
     i = 12
     j = 17
     ij = i * j
     jsq = j ** 2
+
     i_less_than_j = i < j
-    print *, "ij = ", ij
-    print *, "jsq = ", jsq
-    print *, i_less_than_j
-
-    i_less_than_j = .true.
-    i_less_than_j = .false.
-    some_logical = .true.
-
-    print *, i_less_than_j .or. .not. some_logical
-
-! .eq. .lt. .gt. .geq. .leq.
-! ==   <    >    >=    <=
-
-    print *, "dp = ", dp
 
     f1 = 1.0_dp
-    f2 = 4.0_dp
 
-    print *, f1 / f2
+    print *, "i, j, ij, jsq = ", i, j, ij, jsq
+
+    print *, i_less_than_j
+
+    print *, "f1 = ", f1
+
+
+
+! Arrays.
 
     array_3d = 0._dp
-    matrix_3x3 = 0._dp
-
     array_3d(1) = 1._dp
 
-    matrix_3x3(2, :) = 1._dp
+    array_3d(1:2) = 1._dp
 
-    array_3d = (/ 1._dp, 0._dp, 0._dp /)
+    print *, array_3d
+
+
+! Flow Control.
+
+    some_logical = .true.
 
     if (some_logical) then
-    else if (i_less_than_j) then
-    else
+        ! Some code.
+    else if ( i < j ) then
+        ! More code.
     end if
 
-    do i = 1, 100
+    do i = 1, 100, 2
         print *, i
     end do
 
-    i = 0
-    some_logical = .true.
     do while (some_logical)
-        i = i + 1
-        print *, i
-        if (i > 99) then
+! some code
+        if (some_logical) then
             some_logical = .false.
         end if
     end do
 
 
-!   print *, add_two(15)
-    i = 15
-    call add_two(i)
-    print *, i
+! Formatting strings:
+
+    print "(f10.5)", f1
+
+
+    print *, "10 + 20 = ", add_two_numbers(10, 20)
+
+    call add_two_subroutine(10, 20, x)
+
+    print *, " subroutine : 10 + 20 = ", x
+
+
+    open(unit = 1, file = "myfile.data", status = "new")
+    write(1, *) some_logical
+    close(1)
+
 
 contains
 
-!   integer function add_two(x)
-!       integer, intent(in) :: x
-!       add_two = x + 2
-!   end function add_two
 
-    subroutine add_two(x)
-        integer, intent(in out) :: x
-        x = x + 2
-    end subroutine add_two
+    integer function add_two_numbers(x, y)
+        integer, intent(in) :: x, y
+        add_two_numbers = x + y
+    end function add_two_numbers
+
+
+    subroutine add_two_subroutine(x, y, xpy)
+        integer, intent(in) :: x, y
+        integer, intent(out) :: xpy
+        xpy = x + y
+    end subroutine add_two_subroutine
+
+
+    function five_ones()
+        real(dp) :: five_ones(5)
+        five_ones = 1._dp
+    end function five_ones
 
 end program main

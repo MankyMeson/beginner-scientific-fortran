@@ -1,4 +1,15 @@
-# Scientific Fortran for Beginners
+---
+title:
+- Scientific Fortran for Beginners
+author:
+- Clio Johnson
+theme:
+- Copenhagen
+date:
+- 24-01-2024
+
+---
+
 
 ## Introduction
 
