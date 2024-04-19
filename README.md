@@ -8,6 +8,8 @@ You may find this of use if you wish to brush up on the content, review your ans
 
 Slides can be found in the pdf file, and their markdown source can be found in `./slides/slides.md`; Fortran code, including solutions can be found in `./src/`; and please see below for further reading.
 
+Cheat sheets and other small documents can be found in `./notes/`. Currently there's a little format specifiers table.
+
 ## Further Reading
 
 * For info about Fortran itself, see: <https://fortran-lang.org/>.
